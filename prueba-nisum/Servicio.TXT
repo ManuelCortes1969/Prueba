@@ -1,0 +1,70 @@
+
+Servicio
+
+URL
+
+http://localhost:8085/prueba/api/
+
+
+Listar users
+
+GET
+http://localhost:8085/prueba/api/users
+
+Crear usuario
+
+POST
+http://localhost:8085/prueba/api/user
+
+Body ejemplo
+
+ {
+        "name": "John nuevo",
+        "email": "john@domaieeen.com",
+        "password": "passwoerd1",
+        "phones": [
+            {
+                "number": "2234556",
+                "citycode": "46",
+                "countrycode": "43"
+            },
+            {
+                "number": "1234556",
+                "citycode": "46",
+                "countrycode": "43"
+            }
+        ]
+    }
+
+
+Borrar user 
+
+DELETE
+http://localhost:8085/prueba/api/user/{ID}
+
+Swagger
+
+http://localhost:8085/prueba/swagger-ui/index.html
+
+Versión Java 22
+Spring Boot 3.4.5
+BD HSQLDB Server
+
+Objetos de base de datos
+
+CREATE TABLE user (
+   id UUID PRIMARY KEY,
+   name VARCHAR(100) NOT NULL,
+   email VARCHAR(40) NOT NULL,
+   password VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE phones (
+   id UUID PRIMARY KEY,
+   user_id UUID NOT NULL,
+   number VARCHAR(10) NOT NULL,
+   citycode VARCHAR(5) NOT NULL,
+   countrycode VARCHAR(5) NOT NULL,
+   FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
